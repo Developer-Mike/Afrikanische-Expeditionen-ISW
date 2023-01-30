@@ -4,7 +4,7 @@ const expeditions: {[key: string]: Expedition} = {
   exampleExp: {
     id: "ex1",
     name: "Example 1",
-    file: "/markdowns/example.md",
+    file: "expedition1.md",
     color: "lightblue",
     selectedColor: "black",
     nodes: [
@@ -25,7 +25,7 @@ const expeditions: {[key: string]: Expedition} = {
   exampleExp2: {
     id: "ex2",
     name: "Example 2",
-    file: "/markdowns/example.md",
+    file: "expedition2.md",
     color: "limegreen",
     selectedColor: "black",
     nodes: [

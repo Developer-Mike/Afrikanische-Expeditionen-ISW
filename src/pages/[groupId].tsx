@@ -7,22 +7,26 @@ import { useEffect, useRef, useState } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useRouter } from 'next/router'
 import path from 'path'
+import fsPromises from 'fs/promises';
 
-export default function Index({ group }: {
+export default function Index({ group, markdowns }: {
   group: ExpeditionGroup
+  markdowns: {[key: string]: string}
 }) {
   const router = useRouter()
   const expeditionContainer = useRef()
   const [selectedExpeditionId, _setSelectedExpeditionId] = useState(group.expeditions[0].id)
 
   function setSelectedExpeditionId(newSelectedExpeditionId: string) {
-    router.push(`#${selectedExpeditionId}`, undefined, { shallow: true })
     _setSelectedExpeditionId(newSelectedExpeditionId)
+    router.push(`#${newSelectedExpeditionId}`, undefined, { shallow: true })
   }
 
   useEffect(() => {
     if (expeditionContainer.current) {
+      // @ts-ignore
       expeditionContainer.current.addEventListener("scroll", e => {
+        // @ts-ignore
         let selectedExpeditionIndex = parseInt(expeditionContainer.current?.scrollTop / (window.innerHeight / 2))
         let newSelectedExpeditionId = group.expeditions[selectedExpeditionIndex].id
 
@@ -41,12 +45,9 @@ export default function Index({ group }: {
       <main>
         <div ref={expeditionContainer} className={styles.expeditionInfo}>
           { group.expeditions.map((expedition: Expedition) => {
-            let filePath = path.join("public", expedition.file);
-            let fileContents = fs.readFileSync(filePath, 'utf8');
-
             return (
-              <section id={expedition.id} className={styles.expeditionSection}>
-                <ReactMarkdown children={fileContents} />
+              <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
+                <ReactMarkdown children={markdowns[expedition.id]} />
               </section>
             )
           }) }
@@ -64,9 +65,16 @@ export async function getServerSideProps(context: any) {
   const { groupId } = context.query
   let group = cookedGroups.find(group => group.id == groupId)
 
+  let markdowns: {[key: string]: string} = {}
+  for (let expedition of group?.expeditions!) {
+    let filePath = path.join("public", "expeditions", "markdowns", expedition.file)
+    markdowns[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
+  }
+
   return {
     props: {
-      group: group
+      group: group,
+      markdowns: markdowns
     },
     notFound: group == null
   }
