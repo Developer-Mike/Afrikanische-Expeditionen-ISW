@@ -54,7 +54,7 @@ export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelect
                 pointColor={getColor}
                 pointRadius={d => d.file ? 0.3 : 0}
                 pointAltitude={0}
-                onPointClick={(d, _event, _data) => setSelectedExpeditionId(d.groupId)}
+                onPointClick={(d, _event, _data) => setSelectedExpeditionId(d.expeditionId)}
 
                 pathsData={group.expeditions}
                 pathLabel={null}
@@ -65,7 +65,7 @@ export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelect
                 pathPointAlt={0.005}
                 pathStroke={5}
                 pathTransitionDuration={0}
-                onPathClick={(d, _event, _data) => setSelectedExpeditionId(d.groupId)}
+                onPathClick={(d, _event, _data) => setSelectedExpeditionId(d.id)}
             />) }
         </div>
     )
