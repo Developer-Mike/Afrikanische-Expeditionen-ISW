@@ -11,6 +11,7 @@ export interface Expedition {
   groupId?: string
 
   name: string
+  file: string
   color: string
   selectedColor: string
   nodes: ExpeditionNode[]
@@ -20,7 +21,6 @@ export interface ExpeditionNode {
   groupId?: string
   expeditionId?: string
 
-  file?: string
   lat: number
   lng: number
 }

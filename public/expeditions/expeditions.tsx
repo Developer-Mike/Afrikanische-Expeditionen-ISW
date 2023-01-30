@@ -4,16 +4,15 @@ const expeditions: {[key: string]: Expedition} = {
   exampleExp: {
     id: "ex1",
     name: "Example 1",
+    file: "/markdowns/example.md",
     color: "lightblue",
     selectedColor: "blue",
     nodes: [
       {
-          file: "dsa",
           lat: 0.0,
           lng: 0.0
       },
       {
-          file: "dsa",
           lat: 20.0,
           lng: -5.0
       },
@@ -26,16 +25,15 @@ const expeditions: {[key: string]: Expedition} = {
   exampleExp2: {
     id: "ex2",
     name: "Example 2",
+    file: "/markdowns/example.md",
     color: "limegreen",
     selectedColor: "green",
     nodes: [
       {
-          file: "dsa",
           lat: -5.0,
           lng: 10.0
       },
       {
-          file: "dsa",
           lat: 10.0,
           lng: -15.0
       }

@@ -18,8 +18,8 @@ export default function Index({ groups }: {
       </Head>
 
       <main>
-        <div>
-
+        <div className={styles.expeditionGroups}>
+          
         </div>
 
         <OverviewGlobe

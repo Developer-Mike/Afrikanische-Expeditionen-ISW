@@ -25,16 +25,24 @@ export default function OverviewGlobe({ groups, selectedGroupId, setSelectedGrou
         })
     }, groups)
 
-    console.log(nodes)
-
     useEffect(() => {
         setIsCSR(true)
 
-        /*if (globeRef.current) {
-            //@ts-ignore
-            globeRef.current.controls().enableZoom = false
-        }*/
-    })
+        if (globeRef.current) {
+            // @ts-ignore
+            let controls = globeRef.current.controls()
+
+            controls.minPolarAngle = Math.PI * 0.3
+            controls.maxPolarAngle = Math.PI * 0.7
+
+            controls.maxDistance = 200
+            controls.minDistance = 200 // 50 - Disable Zoom
+
+            setTimeout(() => {
+                controls.update()
+            }, 10)
+        }
+    }, [isCSR, globeRef.current])
 
     function getColor(element: ExpeditionNode): string {
         let group: ExpeditionGroup = groups.find(group => group.id == element.groupId)!
@@ -52,11 +60,12 @@ export default function OverviewGlobe({ groups, selectedGroupId, setSelectedGrou
                 pointLat={d => d.lat}
                 pointLng={d => d.lng}
                 pointColor={getColor}
-                pointRadius={d => d.file ? 1 : 0}
+                pointRadius={d => d.file ? 0.3 : 0}
                 pointAltitude={0}
                 onPointClick={(d, _event, _data) => setSelectedGroupId(d.groupId)}
 
                 pathsData={expeditions}
+                pathLabel={null}
                 pathPoints={d => d.nodes}
                 pathPointLat={d => d.lat}
                 pathPointLng={d => d.lng}
