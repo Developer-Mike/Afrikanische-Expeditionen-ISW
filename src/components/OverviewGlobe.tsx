@@ -1,20 +1,31 @@
 import styles from "@/styles/Globe.module.scss"
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Expedition, ExpeditionArc, ExpeditionNode } from "@/utils/interfaces"
-import { globleArcs, globleNodes } from "@/utils/expeditionUtils"
+import { Expedition, ExpeditionGroup, ExpeditionNode } from "@/utils/interfaces"
 
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 
-export default function OverviewGlobe({ expeditions }: {
-    expeditions: Expedition[]
+export default function OverviewGlobe({ groups, selectedGroupId, setSelectedGroupId }: {
+    groups: ExpeditionGroup[]
+    selectedGroupId: String
+    setSelectedGroupId: Function
 }) {
     const [isCSR, setIsCSR] = useState(false)
-    const [selectedExpeditionId, setSelectedExpeditionId] = useState(null)
     const globeRef = useRef()
 
-    const nodes = useMemo(() => globleNodes(expeditions), expeditions)
-    const arcs = useMemo(() => globleArcs(expeditions), expeditions)
+    const expeditions = useMemo(() => { 
+        return groups.flatMap((group: ExpeditionGroup) => {
+            return group.expeditions
+        }) 
+    }, groups)
+
+    const nodes = useMemo(() => { 
+        return expeditions.flatMap((expedition: Expedition) => {
+            return expedition.nodes
+        })
+    }, groups)
+
+    console.log(nodes)
 
     useEffect(() => {
         setIsCSR(true)
@@ -25,9 +36,11 @@ export default function OverviewGlobe({ expeditions }: {
         }*/
     })
 
-    function getColor(element: ExpeditionNode|ExpeditionArc): string {
-        let expedition: Expedition = expeditions.find(d => d.id == element.expeditionId)!
-        return element.expeditionId == selectedExpeditionId ? expedition.selectedColor : expedition.color
+    function getColor(element: ExpeditionNode): string {
+        let group: ExpeditionGroup = groups.find(group => group.id == element.groupId)!
+        let expedition: Expedition = group.expeditions.find(expedition => expedition.id == element.expeditionId)!
+
+        return element.groupId == selectedGroupId ? expedition.selectedColor : expedition.color
     }
 
     return (
@@ -39,19 +52,19 @@ export default function OverviewGlobe({ expeditions }: {
                 pointLat={d => d.lat}
                 pointLng={d => d.lng}
                 pointColor={getColor}
-                pointRadius={d => d.file ? 1 : 0.5}
+                pointRadius={d => d.file ? 1 : 0}
                 pointAltitude={0}
-                onPointClick={(d, _event, _data) => setSelectedExpeditionId(d.expeditionId)}
+                onPointClick={(d, _event, _data) => setSelectedGroupId(d.groupId)}
 
-                arcsData={arcs}
-                arcStartLat={d => d.start.lat}
-                arcStartLng={d => d.start.lng}
-                arcEndLat={d => d.end.lat}
-                arcEndLng={d => d.end.lng}
-                arcColor={getColor}
-                arcAltitude={0}
-                arcStroke={1}
-                onArcClick={(d, _event, _data) => setSelectedExpeditionId(d.expeditionId)}
+                pathsData={expeditions}
+                pathPoints={d => d.nodes}
+                pathPointLat={d => d.lat}
+                pathPointLng={d => d.lng}
+                pathColor={d => getColor(d.nodes[0])}
+                pathPointAlt={0.005}
+                pathStroke={5}
+                pathTransitionDuration={0}
+                onPathClick={(d, _event, _data) => setSelectedGroupId(d.groupId)}
             />) }
         </div>
     )

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Expedition.module.scss'
-import expeditions from 'public/expeditions'
+import expeditions from 'public/expeditions/expeditions'
 import { Expedition } from '@/utils/interfaces'
 import ExpeditionGlobe from '@/components/ExpeditionGlobe'
 
