@@ -6,7 +6,7 @@ const expeditions: {[key: string]: Expedition} = {
     name: "Example 1",
     file: "/markdowns/example.md",
     color: "lightblue",
-    selectedColor: "blue",
+    selectedColor: "black",
     nodes: [
       {
           lat: 0.0,
@@ -27,7 +27,7 @@ const expeditions: {[key: string]: Expedition} = {
     name: "Example 2",
     file: "/markdowns/example.md",
     color: "limegreen",
-    selectedColor: "green",
+    selectedColor: "black",
     nodes: [
       {
           lat: -5.0,
