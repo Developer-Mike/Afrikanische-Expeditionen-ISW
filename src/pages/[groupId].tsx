@@ -5,6 +5,7 @@ import { Expedition, ExpeditionGroup } from '@/utils/interfaces'
 import CustomGlobe from '@/components/CustomGlobe'
 import { useEffect, useRef, useState } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import rehypeRaw from 'rehype-raw'
 import { useRouter } from 'next/router'
 import path from 'path'
 import fsPromises from 'fs/promises';
@@ -66,7 +67,7 @@ export default function Index({ group, expeditionTexts }: {
             { group.expeditions.map((expedition: Expedition) => {
               return (
                 <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
-                  <ReactMarkdown children={expeditionTexts[expedition.id]} />
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]} children={expeditionTexts[expedition.id]} />
                 </section>
               )
             }) }

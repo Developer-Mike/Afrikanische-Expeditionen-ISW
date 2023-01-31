@@ -63,7 +63,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
     return (
         <div id={styles.globe}>
             { isCSR && (<Globe ref={globeRef}
-                globeImageUrl="/world_satelite.jpg"
+                globeImageUrl="/earth-rivers.png"
 
                 pointsData={nodes}
                 pointLat={d => d.lat}
