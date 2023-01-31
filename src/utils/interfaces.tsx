@@ -10,7 +10,6 @@ export interface Expedition {
   id: string
   groupId?: string
 
-  name: string
   file: string
   color: string
   selectedColor: string

@@ -37,11 +37,11 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
             // @ts-ignore
             let controls = globeRef.current.controls()
 
-            controls.minPolarAngle = Math.PI * 0.3
-            controls.maxPolarAngle = Math.PI * 0.7
+            controls.minPolarAngle = Math.PI * 0.4
+            controls.maxPolarAngle = Math.PI * 0.8
 
             controls.maxDistance = 200
-            controls.minDistance = 200 // 50 - Disable Zoom
+            controls.minDistance = 50
 
             setTimeout(() => {
                 controls.update()
