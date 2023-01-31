@@ -6,11 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 
+var loaded = false
 export default function Index() {
   const [isCSR, setIsCSR] = useState(false)
   const globeRef = useRef()
 
-  const [nodes, _setNodes] = useState<ExpeditionNode[]>([])
+  const [nodes, _setNodes] = useState<ExpeditionNode[]>([{}])
   const nodesRef = useRef(nodes)
   function setNodes(nodes: ExpeditionNode[]) {
     nodesRef.current = nodes
@@ -20,6 +21,8 @@ export default function Index() {
   useEffect(() => {
     setIsCSR(true)
     
+    if (loaded) return
+    loaded = true
     console.log("Registering Events")
 
     window.addEventListener("mousedown", e => {
@@ -41,7 +44,7 @@ export default function Index() {
       if (e.key != "Backspace") return
 
       let newNodes = [...nodesRef.current]
-      newNodes.pop()
+      if (newNodes.length > 1) newNodes.pop()
 
       setNodes(newNodes)
     })
@@ -56,7 +59,7 @@ export default function Index() {
 
       <main>
         <div className={styles.output}>
-         {nodes.map(d => `{lat: ${d.lat}, lng: ${d.lng}}`).join(", ")}
+         [{nodes.slice(1).map(d => `{lat: ${d.lat}, lng: ${d.lng}}`).join(", ")}]
         </div>
 
         <div id={styles.globe}>
