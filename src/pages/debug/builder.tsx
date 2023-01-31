@@ -64,7 +64,7 @@ export default function Index() {
 
         <div id={styles.globe}>
           { isCSR && (<Globe ref={globeRef}
-                  globeImageUrl="/world_satelite.jpg"
+                  globeImageUrl="/earth-rivers.png"
 
                   pointsData={nodes}
                   pointLat={d => d.lat}
