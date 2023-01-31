@@ -1,38 +1,60 @@
-.expeditionInfo {
+.expeditionTexts {
   position: absolute;
+  left: 0;
   top: 0;
   bottom: 0;
-  left: 0;
 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: 5px 15px;
+  
+  overflow: hidden;
+}
+
+.expeditionInfo {
   width: 35vw;
-  height: auto;
-  margin: 15px;
-  padding: 15px;
-
-  background-color: white;
-  border-radius: 8px;
+  height: 100%;
+  margin-left: 5px;
 
   //scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    visibility: hidden;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    visibility: hidden; /////
-    background: #888;
-    border-radius: 10px;
+    display: none;
   }
 }
 
 .expeditionSection {
-  scroll-margin-top: 30px;
+  scroll-margin-top: 15px;
   scroll-snap-align: start;
-  height: 100%;
+
+  background-color: white;
+  border-radius: 8px;
+
+  min-height: 100%;
+  height: auto;
+  margin: 15px;
+  padding: 15px;
+}
+
+.progressDots > div {
+  width: 15px;
+  height: 15px;
+  margin: 5px 0;
+
+  background-color: white;
+  border-radius: 100%;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #eeeeee;
+  }
+
+  &.selected {
+    background-color: #999999;
+  }
 }

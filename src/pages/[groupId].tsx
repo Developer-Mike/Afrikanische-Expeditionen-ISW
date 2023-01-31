@@ -26,14 +26,21 @@ export default function Index({ group, markdowns }: {
     if (expeditionContainer.current) {
       // @ts-ignore
       expeditionContainer.current.addEventListener("scroll", e => {
+        try {
         // @ts-ignore
-        let selectedExpeditionIndex = parseInt(expeditionContainer.current?.scrollTop / (window.innerHeight / 2))
-        let newSelectedExpeditionId = group.expeditions[selectedExpeditionIndex].id
+          let children = expeditionContainer.current.childNodes
+          Array.prototype.forEach.call(children, child => {
+            var position = child.getBoundingClientRect()
 
-        if (selectedExpeditionId != newSelectedExpeditionId) _setSelectedExpeditionId(newSelectedExpeditionId)
+            if(position.top < window.innerHeight && position.bottom >= 0) {
+              _setSelectedExpeditionId(child.id)
+              return
+            }
+          })
+        } catch(e) {}
       })
     }
-  })
+  }, [])
 
   return (
     <>
@@ -43,14 +50,26 @@ export default function Index({ group, markdowns }: {
       </Head>
 
       <main>
-        <div ref={expeditionContainer} className={styles.expeditionInfo}>
-          { group.expeditions.map((expedition: Expedition) => {
-            return (
-              <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
-                <ReactMarkdown children={markdowns[expedition.id]} />
-              </section>
-            )
-          }) }
+        <div className={styles.expeditionTexts}>
+          <div className={styles.progressDots}>
+            { group.expeditions.map((expedition: Expedition) => {
+              return (
+                <div key={expedition.id} 
+                className={selectedExpeditionId == expedition.id ? styles.selected : undefined}
+                onClick={() => setSelectedExpeditionId(expedition.id)} />
+              )
+            })}
+          </div>
+
+          <div ref={expeditionContainer} id="expeditionInfo" className={styles.expeditionInfo}>
+            { group.expeditions.map((expedition: Expedition) => {
+              return (
+                <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
+                  <ReactMarkdown children={markdowns[expedition.id]} />
+                </section>
+              )
+            }) }
+          </div>
         </div>
 
         <CustomGlobe
