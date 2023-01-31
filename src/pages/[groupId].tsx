@@ -9,12 +9,12 @@ import { useRouter } from 'next/router'
 import path from 'path'
 import fsPromises from 'fs/promises';
 
-export default function Index({ group, markdowns }: {
+export default function Index({ group, expeditionTexts }: {
   group: ExpeditionGroup
-  markdowns: {[key: string]: string}
+  expeditionTexts: {[key: string]: string}
 }) {
   const router = useRouter()
-  const expeditionContainer = useRef()
+  const expeditionTextContainer = useRef()
   const [selectedExpeditionId, _setSelectedExpeditionId] = useState(group.expeditions[0].id)
 
   function setSelectedExpeditionId(newSelectedExpeditionId: string) {
@@ -23,20 +23,21 @@ export default function Index({ group, markdowns }: {
   }
 
   useEffect(() => {
-    if (expeditionContainer.current) {
+    if (expeditionTextContainer.current) {
       // @ts-ignore
-      expeditionContainer.current.addEventListener("scroll", e => {
+      expeditionTextContainer.current.addEventListener("scroll", e => {
         try {
         // @ts-ignore
-          let children = expeditionContainer.current.childNodes
-          Array.prototype.forEach.call(children, child => {
-            var position = child.getBoundingClientRect()
+          let children = expeditionTextContainer.current.childNodes
+          for (let i = 0; i < children.length; i++) {
+            let child = children[i]
+            let position = child.getBoundingClientRect()
 
             if(position.top < window.innerHeight && position.bottom >= 0) {
               _setSelectedExpeditionId(child.id)
               return
             }
-          })
+          }
         } catch(e) {}
       })
     }
@@ -50,7 +51,7 @@ export default function Index({ group, markdowns }: {
       </Head>
 
       <main>
-        <div className={styles.expeditionTexts}>
+        <div id={styles.sidePanel}>
           <div className={styles.progressDots}>
             { group.expeditions.map((expedition: Expedition) => {
               return (
@@ -61,11 +62,11 @@ export default function Index({ group, markdowns }: {
             })}
           </div>
 
-          <div ref={expeditionContainer} id="expeditionInfo" className={styles.expeditionInfo}>
+          <div ref={expeditionTextContainer} className={styles.expeditionTextContainer}>
             { group.expeditions.map((expedition: Expedition) => {
               return (
                 <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
-                  <ReactMarkdown children={markdowns[expedition.id]} />
+                  <ReactMarkdown children={expeditionTexts[expedition.id]} />
                 </section>
               )
             }) }
@@ -85,16 +86,16 @@ export async function getServerSideProps(context: any) {
   const { groupId } = context.query
   let group = cookedGroups.find(group => group.id == groupId)
 
-  let markdowns: {[key: string]: string} = {}
+  let expeditionTexts: {[key: string]: string} = {}
   for (let expedition of group?.expeditions!) {
     let filePath = path.join("public", "expeditions", "markdowns", expedition.file)
-    markdowns[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
+    expeditionTexts[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
   }
 
   return {
     props: {
       group: group,
-      markdowns: markdowns
+      expeditionTexts: expeditionTexts
     },
     notFound: group == null
   }

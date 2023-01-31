@@ -1,4 +1,4 @@
-.expeditionTexts {
+#sidePanel {
   position: absolute;
   left: 0;
   top: 0;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-.expeditionInfo {
+.expeditionTextContainer {
   width: 35vw;
   height: 100%;
   margin-left: 5px;
@@ -28,13 +28,14 @@
 }
 
 .expeditionSection {
-  scroll-margin-top: 15px;
+  scroll-margin-top: 7.5px;
   scroll-snap-align: start;
 
   background-color: white;
   border-radius: 8px;
 
-  min-height: 100%;
+  box-sizing: border-box;
+  min-height: calc(100vh - 15px - 15px); // minus margin + padding
   height: auto;
   margin: 15px;
   padding: 15px;
