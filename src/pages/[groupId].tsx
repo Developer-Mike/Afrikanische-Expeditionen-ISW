@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '@/styles/Group.module.scss'
 import { cookedGroups } from 'public/expeditions/expeditions'
 import { Expedition, ExpeditionGroup } from '@/utils/interfaces'
-import ExpeditionGlobe from '@/components/ExpeditionGlobe'
+import CustomGlobe from '@/components/CustomGlobe'
 import { useEffect, useRef, useState } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useRouter } from 'next/router'
@@ -53,9 +53,10 @@ export default function Index({ group, markdowns }: {
           }) }
         </div>
 
-        <ExpeditionGlobe
-          group={group} 
-          {...{selectedExpeditionId, setSelectedExpeditionId}} />
+        <CustomGlobe
+          data={group} 
+          selectedDataId={selectedExpeditionId}
+          setSelectedDataId={setSelectedExpeditionId} />
       </main>
     </>
   )

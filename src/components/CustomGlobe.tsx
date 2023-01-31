@@ -1,23 +1,34 @@
-import styles from "@/styles/Globe.module.scss"
+import styles from "@/styles/CustomGlobe.module.scss"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Expedition, ExpeditionGroup, ExpeditionNode } from "@/utils/interfaces"
 
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 
-export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelectedExpeditionId }: {
-    group: ExpeditionGroup
-    selectedExpeditionId: String
-    setSelectedExpeditionId: Function
+export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }: {
+    data: ExpeditionGroup|ExpeditionGroup[]
+    selectedDataId: String|null
+    setSelectedDataId: Function
 }) {
+    const isSingleGroup = !Array.isArray(data)
+
     const [isCSR, setIsCSR] = useState(false)
     const globeRef = useRef()
 
+    const expeditions = useMemo(() => { 
+        if (isSingleGroup) return data.expeditions
+        else {
+            return data.flatMap((group: ExpeditionGroup) => {
+                return group.expeditions
+            }) 
+        } 
+    }, [data])
+
     const nodes = useMemo(() => { 
-        return group.expeditions.flatMap((expedition: Expedition) => {
+        return expeditions.flatMap((expedition: Expedition) => {
             return expedition.nodes
         })
-    }, [group])
+    }, [data])
 
     useEffect(() => {
         setIsCSR(true)
@@ -39,8 +50,14 @@ export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelect
     }, [isCSR, globeRef.current])
 
     function getColor(element: ExpeditionNode): string {
+        let group: ExpeditionGroup = isSingleGroup ? data : data.find(group => group.id == element.groupId)!
         let expedition: Expedition = group.expeditions.find(expedition => expedition.id == element.expeditionId)!
-        return element.expeditionId == selectedExpeditionId ? expedition.selectedColor : expedition.color
+        
+        return (
+            ((isSingleGroup && element.expeditionId == selectedDataId) || 
+            (!isSingleGroup && element.groupId == selectedDataId)) ?
+                expedition.selectedColor : expedition.color
+        )
     }
 
     return (
@@ -54,9 +71,9 @@ export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelect
                 pointColor={getColor}
                 pointRadius={d => d.file ? 0.3 : 0}
                 pointAltitude={0}
-                onPointClick={(d, _event, _data) => setSelectedExpeditionId(d.expeditionId)}
+                onPointClick={(d, _event, _data) => setSelectedDataId(isSingleGroup ? d.expeditionId : d.groupId)}
 
-                pathsData={group.expeditions}
+                pathsData={expeditions}
                 pathLabel={null}
                 pathPoints={d => d.nodes}
                 pathPointLat={d => d.lat}
@@ -65,7 +82,7 @@ export default function ExpeditionGlobe({ group, selectedExpeditionId, setSelect
                 pathPointAlt={0.005}
                 pathStroke={5}
                 pathTransitionDuration={0}
-                onPathClick={(d, _event, _data) => setSelectedExpeditionId(d.id)}
+                onPathClick={(d, _event, _data) => setSelectedDataId(isSingleGroup ? d.id : d.groupId)}
             />) }
         </div>
     )

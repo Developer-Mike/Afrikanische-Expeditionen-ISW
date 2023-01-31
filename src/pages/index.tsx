@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '@/styles/Index.module.scss'
 import { cookedGroups } from 'public/expeditions/expeditions'
-import OverviewGlobe from '@/components/OverviewGlobe'
+import CustomGlobe from '@/components/CustomGlobe'
 import { ExpeditionGroup } from '@/utils/interfaces'
 import { useState } from 'react'
 
@@ -22,9 +22,10 @@ export default function Index({ groups }: {
           
         </div>
 
-        <OverviewGlobe
-          groups={groups}
-          {...{selectedGroupId, setSelectedGroupId}} />
+        <CustomGlobe
+          data={groups}
+          selectedDataId={selectedGroupId}
+          setSelectedDataId={setSelectedGroupId} />
       </main>
     </>
   )

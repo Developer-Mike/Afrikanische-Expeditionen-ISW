@@ -70,7 +70,7 @@ export default function Index() {
                   pointLat={d => d.lat}
                   pointLng={d => d.lng}
                   pointColor={d => "white"}
-                  pointRadius={d => 0.5}
+                  pointRadius={d => 0.2}
                   pointAltitude={0}
 
                   pathsData={[nodes]}
@@ -78,7 +78,7 @@ export default function Index() {
                   pathPointLng={d => d.lng}
                   pathColor={d => "white"}
                   pathPointAlt={0.005}
-                  pathStroke={5}
+                  pathStroke={1}
                   pathTransitionDuration={0}
               />) }
         </div>
