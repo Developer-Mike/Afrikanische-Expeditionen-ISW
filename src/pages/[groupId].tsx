@@ -88,9 +88,11 @@ export async function getServerSideProps(context: any) {
   let group = cookedGroups.find(group => group.id == groupId)
 
   let expeditionTexts: {[key: string]: string} = {}
-  for (let expedition of group?.expeditions!) {
-    let filePath = path.join("public", "expeditions", "markdowns", expedition.file)
-    expeditionTexts[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
+  if (group) {
+    for (let expedition of group?.expeditions!) {
+      let filePath = path.join("public", "expeditions", "markdowns", expedition.file)
+      expeditionTexts[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
+    }
   }
 
   return {

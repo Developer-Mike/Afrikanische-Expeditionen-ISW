@@ -1,6 +1,6 @@
 import styles from "@/styles/CustomGlobe.module.scss"
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Expedition, ExpeditionGroup, ExpeditionNode } from "@/utils/interfaces"
+import { Expedition, ExpeditionGroup, ExpeditionLabel, ExpeditionNode } from "@/utils/interfaces"
 import { shadeColor } from "@/utils/colorUtils"
 
 let Globe = () => null
@@ -25,9 +25,15 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         } 
     }, [data])
 
-    const nodes = useMemo(() => { 
+    /* const nodes = useMemo(() => { 
         return expeditions.flatMap((expedition: Expedition) => {
             return expedition.nodes
+        })
+    }, [data]) */
+
+    const labels = useMemo(() => { 
+        return expeditions.flatMap((expedition: Expedition) => {
+            return expedition.labels
         })
     }, [data])
 
@@ -50,16 +56,16 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         }
     }, [isCSR, globeRef.current])
 
-    function getColor(element: ExpeditionNode): string {
+    function getColor(element: ExpeditionNode|ExpeditionLabel): string {
         let group: ExpeditionGroup = isSingleGroup ? data : data.find(group => group.id == element.groupId)!
         let expedition: Expedition = group.expeditions.find(expedition => expedition.id == element.expeditionId)!
         
         if (isSingleGroup) {
             if (element.expeditionId != selectedDataId) return expedition.color
-            else return shadeColor(expedition.color, -20)
+            else return shadeColor(expedition.color, -30)
         } else {
             if (element.groupId != selectedDataId) return group.color
-            else return shadeColor(group.color, -20)
+            else return shadeColor(group.color, -30)
         }
     }
 
@@ -68,13 +74,13 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
             { isCSR && (<Globe ref={globeRef}
                 globeImageUrl="/earth-rivers.png"
 
-                pointsData={nodes}
+                /*pointsData={nodes}
                 pointLat={d => d.lat}
                 pointLng={d => d.lng}
                 pointColor={getColor}
                 pointRadius={d => d.file ? 0.3 : 0}
                 pointAltitude={0}
-                onPointClick={(d, _event, _data) => setSelectedDataId(isSingleGroup ? d.expeditionId : d.groupId)}
+                onPointClick={(d, _event, _data) => setSelectedDataId(isSingleGroup ? d.expeditionId : d.groupId)}*/
 
                 pathsData={expeditions}
                 pathLabel={null}
@@ -82,10 +88,17 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 pathPointLat={d => d.lat}
                 pathPointLng={d => d.lng}
                 pathColor={d => getColor(d.nodes[0])}
-                pathPointAlt={0.005}
+                pathPointAlt={0}
                 pathStroke={5}
                 pathTransitionDuration={0}
                 onPathClick={(d, _event, _data) => setSelectedDataId(isSingleGroup ? d.id : d.groupId)}
+
+                labelsData={labels.filter(label => isSingleGroup && label.expeditionId == selectedDataId)}
+                labelLat={d => d.lat}
+                labelLng={d => d.lng}
+                labelColor={d => getColor(d)}
+                labelSize={0.5}
+                labelsTransitionDuration={200}
             />) }
         </div>
     )
