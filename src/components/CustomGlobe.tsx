@@ -23,7 +23,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 return group.expeditions
             }) 
         } 
-    }, [data])
+    }, [data, isSingleGroup])
 
     /* const nodes = useMemo(() => { 
         return expeditions.flatMap((expedition: Expedition) => {

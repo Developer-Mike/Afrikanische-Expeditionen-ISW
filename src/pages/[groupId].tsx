@@ -67,7 +67,9 @@ export default function Index({ group, expeditionTexts }: {
             { group.expeditions.map((expedition: Expedition) => {
               return (
                 <section key={expedition.id} id={expedition.id} className={styles.expeditionSection}>
-                  <ReactMarkdown rehypePlugins={[rehypeRaw]} children={expeditionTexts[expedition.id]} />
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {expeditionTexts[expedition.id]}
+                  </ReactMarkdown>
                 </section>
               )
             }) }
