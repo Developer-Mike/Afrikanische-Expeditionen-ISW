@@ -71,7 +71,9 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
 
     return (
         <div id={styles.globe}>
-            { isCSR && (<Globe ref={globeRef}
+            { isCSR && 
+            // @ts-ignore
+            (<Globe ref={globeRef}
                 globeImageUrl="/edited-map.png"
 
                 /*pointsData={nodes}

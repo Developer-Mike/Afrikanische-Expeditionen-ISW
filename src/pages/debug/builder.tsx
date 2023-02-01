@@ -63,7 +63,9 @@ export default function Index() {
         </div>
 
         <div id={styles.globe}>
-          { isCSR && (<Globe ref={globeRef}
+          { isCSR && 
+          // @ts-ignore
+          (<Globe ref={globeRef}
                   globeImageUrl="/edited-map.png"
 
                   pointsData={nodes}
