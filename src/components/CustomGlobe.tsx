@@ -2,6 +2,7 @@ import styles from "@/styles/CustomGlobe.module.scss"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Expedition, ExpeditionGroup, ExpeditionLabel, ExpeditionNode } from "@/utils/interfaces"
 import { shadeColor } from "@/utils/colorUtils"
+import { GlobeMethods } from "react-globe.gl"
 
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
@@ -14,7 +15,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
     const isSingleGroup = !Array.isArray(data)
 
     const [isCSR, setIsCSR] = useState(false)
-    const globeRef = useRef()
+    const globeRef = useRef<GlobeMethods>()
 
     const expeditions = useMemo(() => { 
         if (isSingleGroup) return data.expeditions
@@ -40,23 +41,22 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
     useEffect(() => {
         setIsCSR(true)
 
-        if (globeRef.current) {
-            // @ts-ignore
-            let controls = globeRef.current.controls()
+        setTimeout(() => {
+            if (!globeRef.current) return console.error("Globe is null (Custom Error)")
+            
+            globeRef.current.controls().minPolarAngle = Math.PI * 0.4
+            globeRef.current.controls().maxPolarAngle = Math.PI * 0.8
 
-            controls.minPolarAngle = Math.PI * 0.4
-            controls.maxPolarAngle = Math.PI * 0.8
+            globeRef.current.controls().minAzimuthAngle = Math.PI * -0.07
+            globeRef.current.controls().maxAzimuthAngle = Math.PI * 0.3
 
-            controls.maxDistance = 200
-            controls.minDistance = 50
+            globeRef.current.controls().maxDistance = 200
+            globeRef.current.controls().minDistance = 50
 
             // @ts-ignore
             globeRef.current.pointOfView({ lat: -11, lng: 20, altitude: 200 }, 10)
-
-            setTimeout(() => {
-                controls.update()
-            }, 10)
-        }
+            globeRef.current.controls().update()
+        }, 10)
     }, [isCSR])
 
     function getColor(element: ExpeditionNode|ExpeditionLabel): string {
