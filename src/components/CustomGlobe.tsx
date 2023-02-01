@@ -6,15 +6,15 @@ import { shadeColor } from "@/utils/colorUtils"
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 
-export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }: {
+export default function CustomGlobe({ data, selectedDataId, setSelectedDataId, globeRef }: {
     data: ExpeditionGroup|ExpeditionGroup[]
     selectedDataId: String|null
     setSelectedDataId: Function
+    globeRef: any
 }) {
     const isSingleGroup = !Array.isArray(data)
 
     const [isCSR, setIsCSR] = useState(false)
-    const globeRef = useRef()
 
     const expeditions = useMemo(() => { 
         if (isSingleGroup) return data.expeditions
@@ -35,7 +35,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         return expeditions.flatMap((expedition: Expedition) => {
             return expedition.labels
         })
-    }, [data])
+    }, [expeditions])
 
     useEffect(() => {
         setIsCSR(true)
@@ -54,7 +54,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 controls.update()
             }, 10)
         }
-    }, [isCSR, globeRef.current])
+    }, [isCSR])
 
     function getColor(element: ExpeditionNode|ExpeditionLabel): string {
         let group: ExpeditionGroup = isSingleGroup ? data : data.find(group => group.id == element.groupId)!

@@ -16,6 +16,7 @@ export default function Index({ group, expeditionTexts }: {
 }) {
   const router = useRouter()
   const expeditionTextContainer = useRef()
+  const globeRef = useRef()
   const [selectedExpeditionId, _setSelectedExpeditionId] = useState(group.expeditions[0].id)
 
   function setSelectedExpeditionId(newSelectedExpeditionId: string) {
@@ -79,7 +80,8 @@ export default function Index({ group, expeditionTexts }: {
         <CustomGlobe
           data={group} 
           selectedDataId={selectedExpeditionId}
-          setSelectedDataId={setSelectedExpeditionId} />
+          setSelectedDataId={setSelectedExpeditionId}
+          globeRef={globeRef} />
       </main>
     </>
   )
