@@ -14,7 +14,7 @@
 }
 
 .expeditionTextContainer {
-  width: 35vw;
+  width: max(35vw, 250px);
   height: 100%;
   margin-left: 5px;
 
@@ -58,4 +58,18 @@
   &.selected {
     background-color: #999999;
   }
+}
+
+#goHome {
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  margin: 15px;
+
+  font-size: 30px;
+  color: white;
+
+  cursor: pointer;
+  user-select: none;
 }

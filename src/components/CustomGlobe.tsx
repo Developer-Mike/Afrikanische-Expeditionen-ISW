@@ -50,6 +50,9 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
             controls.maxDistance = 200
             controls.minDistance = 50
 
+            // @ts-ignore
+            globeRef.current.pointOfView({ lat: -11, lng: 20, altitude: 200 }, 10)
+
             setTimeout(() => {
                 controls.update()
             }, 10)

@@ -74,6 +74,8 @@ export default function Index({ group, expeditionTexts }: {
               )
             }) }
           </div>
+
+          <div id={styles.goHome} className="material-symbols-outlined" onClick={() => router.push("/")}>home</div>
         </div>
 
         <CustomGlobe
@@ -94,7 +96,6 @@ export async function getServerSideProps(context: any) {
     for (let expedition of group?.expeditions!) {
       let filePath = path.join(process.cwd(), "expeditions", "markdowns", expedition.file)
       let content = await fsPromises.readFile(filePath, 'utf8')
-      //let content = await (await fetch(`http://localhost:3000/expeditions/markdowns/${expedition.file}`)).text()
         
       expeditionTexts[expedition.id] = content
     }

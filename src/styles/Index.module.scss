@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
 
-  width: 35vw;
+  width: max(35vw, 250px);
   height: 100%;
 
   scroll-behavior: smooth;
