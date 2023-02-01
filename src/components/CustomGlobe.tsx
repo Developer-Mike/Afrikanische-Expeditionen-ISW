@@ -6,15 +6,15 @@ import { shadeColor } from "@/utils/colorUtils"
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 
-export default function CustomGlobe({ data, selectedDataId, setSelectedDataId, globeRef }: {
+export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }: {
     data: ExpeditionGroup|ExpeditionGroup[]
     selectedDataId: String|null
     setSelectedDataId: Function
-    globeRef: any
 }) {
     const isSingleGroup = !Array.isArray(data)
 
     const [isCSR, setIsCSR] = useState(false)
+    const globeRef = useRef()
 
     const expeditions = useMemo(() => { 
         if (isSingleGroup) return data.expeditions

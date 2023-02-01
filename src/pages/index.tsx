@@ -3,14 +3,13 @@ import styles from '@/styles/Index.module.scss'
 import { cookedGroups } from 'public/expeditions/expeditions'
 import CustomGlobe from '@/components/CustomGlobe'
 import { ExpeditionGroup } from '@/utils/interfaces'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function Index({ groups }: {
   groups: ExpeditionGroup[]
 }) {
   const router = useRouter()
-  const globeRef = useRef()
   const [selectedGroupId, _setSelectedGroupId] = useState<string|null>(null)
 
   function setSelectedGroupId(newSelectedGroupId: string) {
@@ -40,8 +39,7 @@ export default function Index({ groups }: {
         <CustomGlobe
           data={groups}
           selectedDataId={selectedGroupId}
-          setSelectedDataId={setSelectedGroupId}
-          globeRef={globeRef} />
+          setSelectedDataId={setSelectedGroupId} />
       </main>
     </>
   )
