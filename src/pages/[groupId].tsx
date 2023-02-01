@@ -94,7 +94,7 @@ export async function getServerSideProps(context: any) {
     for (let expedition of group?.expeditions!) {
       let filePath = (process.env.NODE_ENV == "development") ?
         path.join("public", "expeditions", "markdowns", expedition.file) :
-        path.join("expeditions", "markdowns", expedition.file)
+        path.join(process.cwd(), "expeditions", "markdowns", expedition.file)
         
       expeditionTexts[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
     }
