@@ -19,7 +19,7 @@
   margin-left: 5px;
 
   //scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  //scroll-snap-type: y proximity;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -28,7 +28,7 @@
 }
 
 .expeditionSection {
-  scroll-margin-top: 7.5px;
+  scroll-margin: 7.5px;
   scroll-snap-align: start;
 
   background-color: white;

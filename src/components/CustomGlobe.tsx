@@ -1,6 +1,7 @@
 import styles from "@/styles/CustomGlobe.module.scss"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Expedition, ExpeditionGroup, ExpeditionNode } from "@/utils/interfaces"
+import { shadeColor } from "@/utils/colorUtils"
 
 let Globe = () => null
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default
@@ -53,11 +54,13 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         let group: ExpeditionGroup = isSingleGroup ? data : data.find(group => group.id == element.groupId)!
         let expedition: Expedition = group.expeditions.find(expedition => expedition.id == element.expeditionId)!
         
-        return (
-            ((isSingleGroup && element.expeditionId == selectedDataId) || 
-            (!isSingleGroup && element.groupId == selectedDataId)) ?
-                expedition.selectedColor : expedition.color
-        )
+        if (isSingleGroup) {
+            if (element.expeditionId != selectedDataId) return expedition.color
+            else return shadeColor(expedition.color, -20)
+        } else {
+            if (element.groupId != selectedDataId) return group.color
+            else return shadeColor(group.color, -20)
+        }
     }
 
     return (

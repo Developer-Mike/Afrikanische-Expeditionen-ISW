@@ -3,6 +3,7 @@ export interface ExpeditionGroup {
 
   title: string
   description: string
+  color: string
   expeditions: Expedition[]
 }
 
@@ -12,7 +13,6 @@ export interface Expedition {
 
   file: string
   color: string
-  selectedColor: string
   nodes: ExpeditionNode[]
 }
 
