@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Index.module.scss'
-import { cookedGroups } from 'public/expeditions/expeditions'
+import { cookedGroups } from 'expeditions/expeditions'
 import CustomGlobe from '@/components/CustomGlobe'
 import { ExpeditionGroup } from '@/utils/interfaces'
 import { useState } from 'react'

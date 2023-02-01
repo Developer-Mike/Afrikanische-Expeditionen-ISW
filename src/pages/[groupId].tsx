@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Group.module.scss'
-import { cookedGroups } from 'public/expeditions/expeditions'
+import { cookedGroups } from 'expeditions/expeditions'
 import { Expedition, ExpeditionGroup } from '@/utils/interfaces'
 import CustomGlobe from '@/components/CustomGlobe'
 import { useEffect, useRef, useState } from 'react'
@@ -92,11 +92,11 @@ export async function getServerSideProps(context: any) {
   let expeditionTexts: {[key: string]: string} = {}
   if (group) {
     for (let expedition of group?.expeditions!) {
-      let filePath = (process.env.NODE_ENV == "development") ?
-        path.join("public", "expeditions", "markdowns", expedition.file) :
-        path.join(process.cwd(), "expeditions", "markdowns", expedition.file)
+      let filePath = path.join(process.cwd(), "expeditions", "markdowns", expedition.file)
+      let content = await fsPromises.readFile(filePath, 'utf8')
+      //let content = await (await fetch(`http://localhost:3000/expeditions/markdowns/${expedition.file}`)).text()
         
-      expeditionTexts[expedition.id] = await fsPromises.readFile(filePath, 'utf8')
+      expeditionTexts[expedition.id] = content
     }
   }
 
