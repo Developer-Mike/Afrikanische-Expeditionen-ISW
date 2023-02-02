@@ -1,12 +1,11 @@
 import { Expedition, ExpeditionGroup, ExpeditionLabel, ExpeditionNode } from "@/utils/interfaces"
 
-const colors: {[key: string]: string} = {
-  white: "#ffffff",
-  aqua: "#00ffff",
-  aquamarine: "#7fffd4",
-  lavender: "#e6e6fa",
-  pink: "#ffc0cb",
-}
+const colors: string[] = [
+  "#00ffff",
+  "#7fffd4",
+  "#e6e6fa",
+  "#ffc0cb",
+]
 
 const labels: {[key: string]: ExpeditionLabel} = {
 
@@ -31,20 +30,36 @@ const expeditions: {[key: string]: Expedition} = {
     id: "stanley-emin-pascha",
     file: "stanley_emin_pascha.md",
     color: "#3344ff",
-    labels: [
-      {
-        text: "Test",
-        lat: 0,
-        lng: 0,
-        rotation: 90,
-        showDot: false
-      },
-      {
-        text: "Test 2",
-        lat: 30,
-        lng: 0,
-      }
-    ],
+    labels: [],
+    nodes: [{lat: 0, lng: 0}]
+  },
+
+  davidLivingstone1: {
+    id: "david-livingstone-expedition1",
+    file: "david_livingstone_expedition1.md",
+    color: colors[0],
+    labels: [],
+    nodes: [{lat: -47.00184683511313, lng: 29.21330262756159}, {lat: -45.65041407768405, lng: 29.68315358432117}, {lat: -44.638624220353535, lng: 28.701265013968417}, {lat: -43.20169503790254, lng: 28.854429446054688}, {lat: -41.77970421618906, lng: 28.409602272315603}, {lat: -40.56535194178383, lng: 28.190806113252968}, {lat: -39.95283709953313, lng: 29.843813828669127}, {lat: -39.405821135829484, lng: 30.21371152929713}, {lat: -38.533362870872395, lng: 29.935209015905237}, {lat: -38.51014762856843, lng: 30.495364907963307}, {lat: -38.48254497438728, lng: 31.452969584214685}, {lat: -38.612803286174994, lng: 32.238604549255164}, {lat: -38.70094546583465, lng: 32.90437171526557}, {lat: -38.317248157978156, lng: 33.36788598202388}, {lat: -37.83194359157035, lng: 32.9197404692979}, {lat: -37.647267628726794, lng: 32.08758392586242}, {lat: -37.63574480519861, lng: 31.21137556120528}, {lat: -37.63987008690128, lng: 30.455030310771456}, {lat: -38.003102831282206, lng: 29.935663654246888}, {lat: -38.218584610100265, lng: 29.85859931530375}, {lat: -36.96323054364049, lng: 29.520221977870534}, {lat: -35.38485614433179, lng: 29.609390975695938}, {lat: -34.194249925025844, lng: 29.55328392252823}, {lat: -32.92668044105159, lng: 29.46506234797608}, {lat: -32.02853700673032, lng: 29.57318728539171}, {lat: -30.704666772845982, lng: 29.38611833013386}, {lat: -30.55594906914024, lng: 28.73285274389105}, {lat: -31.257123727417294, lng: 28.491365777013506}, {lat: -33.05278537384237, lng: 28.153216100622124}, {lat: -33.92904736791145, lng: 28.29899956211196}, {lat: -35.66311358561671, lng: 28.457376759156944}, {lat: -37.280358612923564, lng: 29.05169091327064}, {lat: -38.04744465787985, lng: 29.322967859471675}, {lat: -38.28644639126111, lng: 29.682829828978974}, {lat: -39.326183827524034, lng: 30.019879233872835}, {lat: -40.455470263946665, lng: 28.031020691308946}, {lat: -42.01689846180696, lng: 27.270774049739842}, {lat: -42.51217563422142, lng: 27.496966723663974}, {lat: -42.82241087821197, lng: 27.45108413912981}, {lat: -43.17930510841944, lng: 27.08385785683698}, {lat: -43.9768688144743, lng: 26.65387520557436}, {lat: -47.134315127958246, lng: 23.704292386419297}]
+  },
+  davidLivingstone2: {
+    id: "david-livingstone-expedition2",
+    file: "david_livingstone_expedition2.md",
+    color: colors[1],
+    labels: [],
+    nodes: [{lat: 0, lng: 0}]
+  },
+  davidLivingstone3: {
+    id: "david-livingstone-expedition3",
+    file: "david_livingstone_expedition3.md",
+    color: colors[2],
+    labels: [],
+    nodes: [{lat: 0, lng: 0}]
+  },
+  davidLivingstone4: {
+    id: "david-livingstone-expedition4",
+    file: "david_livingstone_expedition4.md",
+    color: colors[3],
+    labels: [],
     nodes: [{lat: 0, lng: 0}]
   }
 }
@@ -62,9 +77,9 @@ const groups: ExpeditionGroup[] = [
     ]
   },
   {
-    id: "ph",
-    title: "ph",
-    description: "ph",
+    id: "david-livingstone",
+    title: "David Livingstone",
+    description: "David Livingstone war ein schottischer Missionar und Afrikaforscher, der im 19. Jahrhundert Afrika bereiste. Er war bekannt dafür alleine oder in kleinen Gruppen zu reisen. Er gilt bis heute als einer der grossen Entdecker und Abenteurer in der Geschichte.",
     color: "#00ddaa",    
     expeditions: [
 

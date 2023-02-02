@@ -65,10 +65,10 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         
         if (isSingleGroup) {
             if (element.expeditionId != selectedDataId) return expedition.color
-            else return shadeColor(expedition.color, -30)
+            else return "white" // shadeColor(expedition.color, -30)
         } else {
             if (element.groupId != selectedDataId) return group.color
-            else return shadeColor(group.color, -30)
+            else return "white" // shadeColor(group.color, -30)
         }
     }
 

@@ -1,0 +1,3 @@
+# Entdeckungsreise 1858-1864 
+
+Bei Livingstones Rückkehr nach Grossbritannien wurde ihm klar, dass ihm das Forschen wichtiger war als die Verbreitung der Frohen Botschaft. Als die LMS ihn aufforderte seinen Pflichten nachzugehen trat er aus und konzentrierte sich auf die Forschung. Auf seiner nächsten Expedition wollte er herausfinden ob der Sambesi gut beschaffbar wäre. Doch die Reise verlief katastrophal für Livingstone. Das Dampfschiff ging ständig kaputt und seine Frau, die auf die Expedition mitgekommen ist, ist gestorben.  Ausserdem stellte sich heraus, dass der Sambesi nur auf einem kurzen Weg schiffbar war.
