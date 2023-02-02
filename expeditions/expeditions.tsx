@@ -104,7 +104,7 @@ const expeditions: {[key: string]: Expedition} = {
     file: "david_livingstone_2.md",
     color: colors[1],
     labels: [
-      {lat: -28.954619273108534, lng: 28.35689511301473, text: "Sambesi"}
+      {lat: -28.954619273108534, lng: 28.35689511301473, text: "Sambesi"},
       {lat: -29.302925688392236, lng: 32.38686721377316, text: "Victoriafälle"},
       {lat: -30.108069662357934, lng: 41.24570578818689, text: "Quelimane"}
     ],
