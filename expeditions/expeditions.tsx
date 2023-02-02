@@ -1,5 +1,17 @@
 import { Expedition, ExpeditionGroup, ExpeditionLabel, ExpeditionNode } from "@/utils/interfaces"
 
+const colors: {[key: string]: string} = {
+  white: "#ffffff",
+  aqua: "#00ffff",
+  aquamarine: "#7fffd4",
+  lavender: "#e6e6fa",
+  pink: "#ffc0cb",
+}
+
+const labels: {[key: string]: ExpeditionLabel} = {
+
+}
+
 const expeditions: {[key: string]: Expedition} = {
   stanleyLivingston: {
     id: "stanley-livingston",
@@ -23,7 +35,14 @@ const expeditions: {[key: string]: Expedition} = {
       {
         text: "Test",
         lat: 0,
-        lng: 0
+        lng: 0,
+        rotation: 90,
+        showDot: false
+      },
+      {
+        text: "Test 2",
+        lat: 30,
+        lng: 0,
       }
     ],
     nodes: [{lat: 0, lng: 0}]

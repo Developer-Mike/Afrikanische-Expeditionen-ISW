@@ -32,4 +32,6 @@ export interface ExpeditionLabel {
   text: string
   lat: number
   lng: number
+  rotation?: number
+  showDot?: boolean
 }

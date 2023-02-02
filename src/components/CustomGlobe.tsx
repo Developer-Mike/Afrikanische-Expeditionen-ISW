@@ -99,6 +99,8 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 labelsData={labels.filter(label => isSingleGroup && label.expeditionId == selectedDataId)}
                 labelLat={d => d.lat}
                 labelLng={d => d.lng}
+                labelRotation={d => d.rotation ?? 0}
+                labelIncludeDot={d => d.showDot ?? true}
                 labelColor={d => getColor(d)}
                 labelSize={0.5}
                 labelsTransitionDuration={200}
