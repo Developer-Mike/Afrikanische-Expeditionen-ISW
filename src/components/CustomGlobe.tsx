@@ -97,7 +97,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 labelLng={d => d.lng}
                 labelRotation={d => d.rotation ?? 0}
                 labelIncludeDot={d => d.showDot ?? true}
-                labelColor={d => "#bbbbbb"}
+                labelColor={d => "#ffc0cb"}
                 labelSize={0.25}
                 labelsTransitionDuration={200}
             />) }
