@@ -1,12 +1,5 @@
-Run:
-```bash
-npm run dev
-```
+## Website about historical expeditions in Africa
+### Made for a special week in school
+Run: `npm run dev`
 
-Push:
-```bash
-git add .
-git commit -m "Update Info"
-git pull
-git push
-```
+Website: https://afrika-isw.vercel.app/
