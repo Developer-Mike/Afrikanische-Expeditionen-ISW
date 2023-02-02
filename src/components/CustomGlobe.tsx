@@ -65,7 +65,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         
         if (isSingleGroup && element.expeditionId != selectedDataId) return expedition.color
         else if (!isSingleGroup && element.groupId != selectedDataId) return group.color
-        else return "#888888"
+        else return "white"
     }
 
     return (
@@ -97,7 +97,7 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
                 labelLng={d => d.lng}
                 labelRotation={d => d.rotation ?? 0}
                 labelIncludeDot={d => d.showDot ?? true}
-                labelColor={d => getColor(d)}
+                labelColor={d => "#bbbbbb"}
                 labelSize={0.25}
                 labelsTransitionDuration={200}
             />) }
