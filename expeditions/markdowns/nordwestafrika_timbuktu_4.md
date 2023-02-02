@@ -1,0 +1,3 @@
+# Nächste Reisen nach Nordafrika
+
+Viele Jahren später, Friedrich Gerhard Rohlfs folgte den Weg von Friedrich Hornemann, aber könnte nach dem Süd weiter gehen, und wurde der erste Europäer der Nord bis Süd gelaufen hat, bis aktuelles Lagos. Danach, kam Gustav Nachtigal wurde den anderen Seit des Nordafrikas explorieren, indem gehen nach dem Nil, der wenige Jahren früherer wurde sehr viel exploriert. Nur ein paar Jahren später wurde fast ganz Afrika kolonisiert, und die grösste Teil des Nords von Frankreich.
