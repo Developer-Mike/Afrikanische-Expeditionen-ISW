@@ -5,7 +5,7 @@ const colors: string[] = [
   "#7fffd4",
   "#e6e6fa",
   "#ffc0cb",
-  "#todo",
+  "#fafad2",
 ]
 
 const labels: {[key: string]: ExpeditionLabel} = {
@@ -32,7 +32,7 @@ const expeditions: {[key: string]: Expedition} = {
     file: "stanley_3.md",
     color: colors[2],
     labels: [],
-    nodes: [{lat: 0, lng: 0}]
+    nodes: [{lat: -17.949550969424905, lng: 18.10108584802032}, {lat: -17.996935627778214, lng: 18.599309859420003}, {lat: -18.003676668504227, lng: 18.821873613383488}, {lat: -17.500457871170326, lng: 18.72795247140688}, {lat: -17.372215318380015, lng: 19.105289393732747}, {lat: -17.05557834042662, lng: 19.449412999372242}, {lat: -16.63718154174208, lng: 19.994087157041875}, {lat: -16.206028012654585, lng: 20.583169163964413}, {lat: -15.8473240687552, lng: 20.98396934275209}, {lat: -15.36281342838923, lng: 20.985343306802392}, {lat: -14.746497937081202, lng: 20.999062224462364}, {lat: -14.102792443727509, lng: 21.19388831288184}, {lat: -13.914617083328878, lng: 21.58679476184082}, {lat: -13.50215367973415, lng: 21.809658126327776}, {lat: -13.104854050745715, lng: 22.40005258747}, {lat: -12.70479156960809, lng: 22.84298692977542}, {lat: -12.380385491300956, lng: 23.059213515375745}, {lat: -11.795865793304003, lng: 23.180285880936538}, {lat: -11.232883548579522, lng: 23.27724665978529}, {lat: -10.864015078937157, lng: 23.8264977915276}, {lat: -10.585017054470242, lng: 24.325765059312204}, {lat: -10.348272304902892, lng: 25.07725574376535}, {lat: -10.243511060222147, lng: 25.852549856960565}, {lat: -10.14495161481976, lng: 26.546585244091048}, {lat: -10.128295677284385, lng: 27.176042216284124}, {lat: -10.372390861525076, lng: 27.721155946949416}, {lat: -10.65966762657564, lng: 28.094028580827754}, {lat: -10.887436964852853, lng: 28.395094941923993}, {lat: -10.99787535601152, lng: 28.840264290616247}, {lat: -10.96569984109334, lng: 29.271542456226626}, {lat: -10.717777355479072, lng: 29.718189866127425}, {lat: -10.48059701470524, lng: 30.152649569398008}, {lat: -10.327333453777868, lng: 30.717458741175292}, {lat: -10.421348205579434, lng: 31.208056665294777}, {lat: -10.362151790645356, lng: 31.82375176384045}, {lat: -10.204111056592609, lng: 32.32675691074066}, {lat: -9.772090241984543, lng: 32.64072359885424}, {lat: -9.683375956608131, lng: 33.13592072070141}, {lat: -9.95940568110126, lng: 33.26941196635463}, {lat: -10.126137842093272, lng: 33.7482260339524}, {lat: -10.085729847049592, lng: 34.18853798678685}, {lat: -10.083981466295114, lng: 34.72647222570998}, {lat: -10.139436296021046, lng: 35.059463996884816}, {lat: -10.501594659258103, lng: 35.0488031761984}, {lat: -10.911957369804753, lng: 34.91299189733429}, {lat: -11.265189526003411, lng: 34.914656704033845}, {lat: -11.63386575661788, lng: 34.88458957399999}, {lat: -12.085324499506967, lng: 34.601101214773685}, {lat: -12.500147359733873, lng: 34.80918648857192}, {lat: -13.071963917616955, lng: 35.11462882071305}, {lat: -13.58821279055141, lng: 35.339041706736545}, {lat: -14.324416236773956, lng: 35.595694482443854}, {lat: -14.713834405235332, lng: 35.80735283721396}, {lat: -15.294649407413061, lng: 36.13775088411013}, {lat: -16.303241248051123, lng: 36.91482105829648}, {lat: -16.774785697215776, lng: 37.59032103946238}, {lat: -17.498349128771366, lng: 38.51335007752438}, {lat: -17.9597776661616, lng: 38.77417091004329}, {lat: -18.17413551277177, lng: 39.7237245651344}, {lat: -18.133602578418632, lng: 40.365520554105395}, {lat: -18.11968376681196, lng: 41.32498923139465}, {lat: -18.12087361033909, lng: 42.287563574305054}, {lat: -18.34159252600851, lng: 42.93232135589851}]
   },
 
   davidLivingstone1: {
@@ -120,7 +120,7 @@ const groups: ExpeditionGroup[] = [
       expeditions.davidLivingstone4,
     ]
   },
-  { // Marv
+  {
     id: "james-bruce",
     title: "James Bruce",
     description: "James Bruce wurde 1730 in Schottland geboren. Er stammte aus einem schottischen Adelsgeschlecht und studierte Rechtswissenschaften in Harrow und Edinburgh, ohne das Studium abzuschließen. Danach arbeitete als Weinhändler und heiratete, jedoch starb seine Frau bald darauf. James Bruce reiste in den Jahren 1768 bis 1773 durch Ägypten, Nubien, Abyssinien zur Quelle des Nils. Seine Reise hatte zum Ziel, die Quelle des Nils zu finden und zu kartieren.",
@@ -129,7 +129,7 @@ const groups: ExpeditionGroup[] = [
       expeditions.jamesBruce1,
     ]
   },
-  { // Marv
+  {
     id: "mungo-park",
     title: "Mungo Park",
     description: "Mungo Park war ein schottischer Entdecker, der im späten 18. und frühen 19. Jahrhundert mehrere Expeditionen nach Afrika unternommen hat. Am meisten bekannt ist er für seine Reisen durch das Innere Westafrikas, bei denen er eine der ersten detaillierten Beschreibungen der Geographie, Kultur und Menschen dieser Region lieferte.",
