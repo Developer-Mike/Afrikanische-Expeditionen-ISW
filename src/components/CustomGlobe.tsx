@@ -63,13 +63,9 @@ export default function CustomGlobe({ data, selectedDataId, setSelectedDataId }:
         let group: ExpeditionGroup = isSingleGroup ? data : data.find(group => group.id == element.groupId)!
         let expedition: Expedition = group.expeditions.find(expedition => expedition.id == element.expeditionId)!
         
-        if (isSingleGroup) {
-            if (element.expeditionId != selectedDataId) return expedition.color
-            else return "white" // shadeColor(expedition.color, -30)
-        } else {
-            if (element.groupId != selectedDataId) return group.color
-            else return "white" // shadeColor(group.color, -30)
-        }
+        if (isSingleGroup && element.expeditionId != selectedDataId) return expedition.color
+        else if (!isSingleGroup && element.groupId != selectedDataId) return group.color
+        else return "#888888"
     }
 
     return (
