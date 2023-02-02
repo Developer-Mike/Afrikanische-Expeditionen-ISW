@@ -1,3 +1,4 @@
-# 3. Reise - Rettung von Emin Pascha 
+# 3. Reise - Rettung von Emin Pascha
+
 Doch 1881 wird Stanley einmal mehr aufgefordert eine bekannte Persönlichkeit zu retten. Diesmal solte er Emin Pascha, einen deutschen Gouvanour in einer ägyptischen Provinz retten. Der belgische König stimmte nur unter der Bedingung, das Stanley einen Umweg in unbekannte Gebiete des Jungels im Kongo machte, ein. So machte sich Stanley wiedereinmal mit einem riesigen Tross von 389 Männern auf den Weg. 
 Er folgte von Boma dem Kongo flussaufwärts bis zur Abzweigung des Aruwimiflusses. Von hier an betrat Stanley unbekanntes Gebiet und kämpfte sich durch den Dichten Jungle bis zum Ruwenzori - Gebirge. Mit Mühe und Not konnte Stanley Emin Pascha überreden, mit ihm zu kommen. Diesmal nahmen sie den schnelleren Weg, in Richtung Bagamoyo. Doch zu Stanleys Unklück, konnte er Emin Pascha nicht zu überreden, in den Dienst des belgischen Königs zu tretten. 
